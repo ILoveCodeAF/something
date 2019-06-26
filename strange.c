@@ -13,9 +13,9 @@ void print_string(char* string, void func(void *)){
 }
 
 
-static void echo(void*);
-static void say(void*);
-static void (*func[Event])(void*) = {
+void echo(void*);
+void say(void*);
+void (*func[Event])(void*) = {
 	[ECHO] = echo,
 	[SAY] = say
 };
