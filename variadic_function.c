@@ -1,4 +1,5 @@
 // https://en.wikipedia.org/wiki/Variadic_function#Example_in_C
+// https://stackoverflow.com/questions/1472138/c-default-arguments
 
 #include <stdio.h>
 #include <stdarg.h>
