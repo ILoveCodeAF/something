@@ -32,7 +32,7 @@ int main(){
 	time_t milestone = get_time("1900/01/01 00:00:00");
 	std::cout<<"milestone: "<<milestone<<std::endl;
 	time_t now = get_time("2019/10/09 17:28:27");
-	long time70 = 2208988800L;//2209014400
+	long time70 = 2208988800L;//2209014400//2208989200
 	std::cout<<"now: "<<now<<std::endl;
 	std::cout<<(now+time70)<<std::endl;
 	std::cout<<(now+time70)-to_integer(ntp, length)<<std::endl;
