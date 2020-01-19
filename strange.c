@@ -5,7 +5,7 @@
 #define SAY 1
 
 void print(void* c){
-	char* ch = (char*) c;
+	char *ch = (char*) c;
 	printf("%s", ch);
 }
 void print_string(char* string, void func(void *)){
