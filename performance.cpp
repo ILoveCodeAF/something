@@ -13,7 +13,6 @@
 //
 
 #include <iostream>
-#include <set>
 #include <unordered_map>
 
 class Solution {
@@ -23,22 +22,19 @@ class Solution {
 };
 
 int Solution::solution(int arr[], int n){
-	std::set<int> wtf_set;
 	std::unordered_map<int, int> wtf_umap;
 	int *single_digit_distinguish = new int[n+1];
 	int *two_digits_distinguish = new int[n+1];
 	single_digit_distinguish[n] = two_digits_distinguish[n] = 0;
 
-	int size = 0;
 	std::unordered_map<int, int>::iterator got;
 	for (int i = n-1; i >= 0; i--){
-		size = wtf_set.size();
-		wtf_set.insert(arr[i]);
+		got = wtf_umap.find(arr[i]);
 		single_digit_distinguish[i] = single_digit_distinguish[i+1];
-		if (wtf_set.size() != size) {
+		if (got == wtf_umap.end()) {
 			single_digit_distinguish[i] += 1;
 		}
-		got = wtf_umap.find(arr[i]);
+		
 		two_digits_distinguish[i] = single_digit_distinguish[i+1] + two_digits_distinguish[i+1];
 		if (got != wtf_umap.end()){
 			two_digits_distinguish[i] -= single_digit_distinguish[got->second+1];
@@ -52,14 +48,14 @@ int Solution::solution(int arr[], int n){
 		wtf_umap[arr[i]] = i;
 	}
 
-	wtf_set.clear();
+	wtf_umap.clear();
 	int ret = 0;
 	for(int i = 0; i < n; i++){
-		size = wtf_set.size();
-		wtf_set.insert(arr[i]);
-		if (wtf_set.size() != size) {
+		got = wtf_umap.find(arr[i]);
+		if (got == wtf_umap.end()) {
 			ret = ret + two_digits_distinguish[i+1];
 		}
+		wtf_umap[arr[i]] = i;
 	}
 	std::cout<<"single: ";
 	for (int i = 0; i < n+1; ++i) {
