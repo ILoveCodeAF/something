@@ -4,6 +4,7 @@
 class Solution {
 	public:
 		int solution(int arr[], int n);
+		int solution2(int arr[], int n, int nNum = 3);
 	private:
 };
 

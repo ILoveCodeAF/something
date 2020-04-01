@@ -66,3 +66,44 @@ int Solution::solution(int arr[], int n){
 	return ret;
 }
 
+
+int Solution::solution2(int arr[], int n, int nNum) {
+	std::unordered_map<int, int> wtf_umap;
+	int **digit = new int*[nNum];
+	for(int i = 0; i < nNum; ++i){
+		digit[i] = new int[n+1];
+		digit[i][0] = 0;
+	}
+	std::unordered_map<int, int>::iterator got;
+	for(int i = 1; i < n+1; ++i) {
+		got = wtf_umap.find(arr[i-1]);
+
+		digit[0][i] = digit[0][i-1];
+		if(got == wtf_umap.end()){
+			digit[0][i]++;
+		}
+		for(int j = 1; j < nNum; ++j) {
+			digit[j][i] = digit[j][i-1] + digit[j-1][i-1];
+			if(got != wtf_umap.end()){
+				digit[j][i] -= digit[j-1][got->second];
+			}
+		}
+		wtf_umap[arr[i-1]] = i-1;
+	}
+
+//for(int i = 0; i < nNum; i++){
+//	std::cout<<"digit :"<<i<<std::endl;
+//	for(int j = 0; j < n+1; j++){
+//		std::cout<<digit[i][j]<<' ';
+//	}
+//	std::cout<<std::endl;
+//}
+	int ret = digit[nNum-1][n];
+
+
+	for(int i = 0; i < nNum; ++i){
+		delete[] digit[i];
+	}
+	delete[] digit;
+	return ret;
+}

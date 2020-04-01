@@ -187,6 +187,8 @@ int main() {
 //infile.close();
 	std::cout<<"expected result: "<<count(filename)<<std::endl;
 	Solution s;
-	std::cout<<"my result: " << s.solution(arr, n) <<std::endl;
+	std::cout<<"my result1: " << s.solution(arr, n) <<std::endl;
+	std::cout<<"my result2: " << s.solution2(arr, n, 3) <<std::endl;
+
 	return 0;
 }
